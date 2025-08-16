@@ -1,0 +1,14 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+$primary: #262626;
+$secondary: #e5e5e5;
+$success: #22c55e;
+$info: #0ea5e9;
+$warning: #facc15;
+$danger: #ff6467;
+$light: #ffffff;
+$dark: #0a0a0a;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
