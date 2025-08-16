@@ -1,14 +1,11 @@
-// Custom.scss
-// Option A: Include all of Bootstrap
-$primary: #262626;
-$secondary: #e5e5e5;
-$success: #22c55e;
-$info: #0ea5e9;
-$warning: #facc15;
-$danger: #ff6467;
-$light: #ffffff;
-$dark: #0a0a0a;
+// shadcn-inspired color palette
+$primary: #f8fafc; // Light gray for primary text/elements
+$secondary: #64748b; // Muted blue-gray
+$success: #10b981; // Emerald green
+$info: #3b82f6; // Blue
+$warning: #f59e0b; // Amber
+$danger: #ef4444; // Red
+$light: #f1f5f9; // Very light gray
+$dark: #0f172a; // Very dark slate
 
 @import "../node_modules/bootstrap/scss/bootstrap";
-
-// Then add additional custom code here
