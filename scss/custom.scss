@@ -1,11 +1,247 @@
-// shadcn-inspired color palette
-$primary: #f8fafc; // Light gray for primary text/elements
-$secondary: #64748b; // Muted blue-gray
-$success: #10b981; // Emerald green
-$info: #3b82f6; // Blue
-$warning: #f59e0b; // Amber
-$danger: #ef4444; // Red
-$light: #f1f5f9; // Very light gray
-$dark: #0f172a; // Very dark slate
+/* ============================================================================
+   custom.scss — Bootstrap → shadcn look
+   Structure:
+   1) Variables (Sass, HEX only)   ← Bootstrap reads these during build
+   2) Import Bootstrap
+   3) Overrides (CSS variables + component polish, accent variants)
+============================================================================ */
 
+/* 1) VARIABLES (HEX ONLY) -------------------------------------------------- */
+/* Colors that Bootstrap will use at build time (no CSS vars here) */
+$primary:   #111111;    // neutral emphasis (light)
+$secondary: #737373;    // gray-500
+$success:   #10b981;    // emerald-500
+$info:      #3b82f6;    // blue-500
+$warning:   #f59e0b;    // amber-500
+$danger:    #ef4444;    // red-500
+$light:     #fafafa;    // gray-50
+$dark:      #0a0a0a;    // gray-950
+
+$theme-colors: (
+  "primary":   $primary,
+  "secondary": $secondary,
+  "success":   $success,
+  "info":      $info,
+  "warning":   $warning,
+  "danger":    $danger,
+  "light":     $light,
+  "dark":      $dark
+);
+
+/* Type & rhythm */
+$font-family-sans-serif: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+$font-weight-base: 500;
+$headings-font-weight: 700;
+$line-height-base: 1.5;
+
+/* Corners & borders */
+$enable-rounded: true;
+$border-width: 1px;
+$border-radius: .75rem;      // shadcn-ish rounded
+$border-radius-sm: .5rem;
+$border-radius-lg: 1rem;
+
+/* Shadows */
+$box-shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+$box-shadow:    0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+$box-shadow-lg: 0 12px 24px rgba(0,0,0,.12);
+
+/* Body & tables */
+$body-bg: #ffffff;
+$body-color: #111111;
+$table-border-color: #e5e5e5;
+
+/* Focus */
+$focus-ring-width: .25rem;
+$focus-ring-opacity: 1;
+$focus-ring-color: rgba(59,130,246,.35);
+
+/* 2) IMPORT BOOTSTRAP ------------------------------------------------------ */
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+/* 3) OVERRIDES (CSS VARS + COMPONENT POLISH) ------------------------------- */
+/* Runtime tokens (light/dark) */
+:root,
+[data-bs-theme="light"] {
+  --bg:            #ffffff;
+  --fg:            #0a0a0a;
+  --muted:         #f5f5f5;     /* gray-100 */
+  --muted-fg:      #737373;     /* gray-500 */
+  --subtle:        #fafafa;     /* alt surface */
+  --elevated:      #ffffff;
+  --elevated-fg:   #0a0a0a;
+  --border:        #e5e5e5;     /* gray-200 */
+
+  /* default accent (neutral/black like shadcn) */
+  --accent:        #111111;
+  --accent-fg:     #f5f5f5;
+
+  --ring:          rgba(59,130,246,.35);
+  --shadow-sm:     0 1px 2px rgba(0,0,0,.04);
+  --shadow:        0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-lg:     0 12px 24px rgba(0,0,0,.12);
+  --radius:        .75rem;
+}
+
+[data-bs-theme="dark"] {
+  --bg:            #0a0a0a;     /* gray-950 */
+  --fg:            #e5e5e5;     /* gray-200 */
+  --muted:         #171717;     /* gray-900 */
+  --muted-fg:      #a3a3a3;     /* gray-400 */
+  --subtle:        #111111;     /* cards */
+  --elevated:      #111111;
+  --elevated-fg:   #e5e5e5;
+  --border:        #262626;     /* gray-800 */
+
+  --accent:        #f5f5f5;     /* light on dark */
+  --accent-fg:     #0a0a0a;
+
+  --ring:          rgba(99,102,241,.45);
+  --shadow-sm:     0 1px 2px rgba(0,0,0,.35);
+  --shadow:        0 4px 16px rgba(0,0,0,.4);
+  --shadow-lg:     0 24px 40px rgba(0,0,0,.5);
+  --radius:        .75rem;
+}
+
+/* Accent variants (match shadcn color tabs) */
+[data-accent="red"]    { --accent:#ef4444; --accent-fg:#ffffff; }
+[data-accent="rose"]   { --accent:#f43f5e; --accent-fg:#ffffff; }
+[data-accent="orange"] { --accent:#f97316; --accent-fg:#0a0a0a; }
+[data-accent="green"]  { --accent:#10b981; --accent-fg:#0a0a0a; }
+[data-accent="blue"]   { --accent:#3b82f6; --accent-fg:#ffffff; }
+[data-accent="yellow"] { --accent:#f59e0b; --accent-fg:#0a0a0a; }
+[data-accent="violet"] { --accent:#8b5cf6; --accent-fg:#ffffff; }
+
+/* Global polish */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* { border-color: var(--border); }
+
+:root { --ease: cubic-bezier(.2,.8,.2,1); --dur: 160ms; --dur-fast: 120ms; }
+@media (prefers-reduced-motion: no-preference) {
+  a, button, .btn, .form-control, .form-select, .card, .dropdown-menu {
+    transition: background-color var(--dur) var(--ease),
+                color var(--dur) var(--ease),
+                border-color var(--dur) var(--ease),
+                box-shadow var(--dur) var(--ease),
+                transform var(--dur-fast) var(--ease);
+  }
+}
+
+/* Cards */
+.card {
+  background: var(--elevated);
+  color: var(--elevated-fg);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + .25rem);
+  box-shadow: var(--shadow-sm);
+}
+.card-header, .card-footer {
+  background: var(--elevated);
+  border-color: var(--border);
+}
+.card-hover:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+/* Buttons */
+.btn {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  &:active { transform: translateY(1px); }
+  &:focus-visible { box-shadow: 0 0 0 .25rem var(--ring); }
+}
+.btn-primary {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+  &:hover {
+    background-color: color-mix(in srgb, var(--accent) 92%, #fff 8%);
+    border-color: color-mix(in srgb, var(--accent) 90%, #fff 10%);
+  }
+}
+.btn-outline-primary {
+  color: var(--fg);
+  background: transparent;
+  border-color: var(--border);
+  &:hover { background: var(--muted); border-color: var(--border); }
+}
+.btn-ghost {
+  --_hover: var(--muted);
+  padding: .55rem .9rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--fg);
+  &:hover { background: var(--_hover); }
+  &:focus-visible { box-shadow: 0 0 0 .25rem var(--ring); }
+}
+
+/* Inputs */
+.form-control, .form-select, .form-check-input {
+  background: color-mix(in srgb, var(--bg) 95%, #fff 5%);
+  color: var(--fg);
+  border-color: var(--border);
+  border-radius: calc(var(--radius) - .125rem);
+}
+.form-control::placeholder { color: var(--muted-fg); }
+.form-control:focus, .form-select:focus {
+  background: color-mix(in srgb, var(--bg) 98%, #fff 2%);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border) 65%);
+  box-shadow: 0 0 0 .25rem var(--ring);
+}
+
+/* Navbar */
+.navbar {
+  background: color-mix(in srgb, var(--bg) 92%, #fff 8%);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.navbar .nav-link {
+  border-radius: .5rem;
+  padding: .5rem .75rem;
+}
+.navbar .nav-link:hover, .navbar .nav-link:focus { background: var(--muted); }
+
+/* Dropdowns / Popovers / Modals */
+.dropdown-menu, .popover {
+  background: var(--elevated);
+  color: var(--elevated-fg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.modal-content {
+  background: var(--elevated);
+  color: var(--elevated-fg);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + .25rem);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Alerts */
+.alert {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--subtle);
+  color: var(--fg);
+}
+
+/* Tables */
+.table {
+  --stripe: color-mix(in srgb, var(--muted) 70%, transparent);
+  --hover:  color-mix(in srgb, var(--muted) 55%, transparent);
+  border-color: var(--border);
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * { background-color: var(--stripe); }
+.table-hover > tbody > tr:hover > * { background-color: var(--hover); }
+
+/* Utilities */
+.ring { box-shadow: 0 0 0 .25rem var(--ring) !important; }
+.bg-muted { background: var(--muted) !important; }
+.text-muted-fg { color: var(--muted-fg) !important; }
+.border-subtle { border-color: var(--border) !important; }
+.rounded-xl { border-radius: calc(var(--radius) + .25rem) !important; }
