@@ -27,6 +27,89 @@
                     Toggle color mode
                 </button>
             </div>
+            <!-- login form -->
+            <div class="row">
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-6 p-3">
+                    <div class="card w-50">
+                        <div class="card-header">
+                            Login Form
+                        </div>
+                        <div class="card-body">
+                            <form id="login-form" class="form-inline">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                </div>
+                                <div>
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password"
+                                        placeholder="Enter password">
+                                </div>
+                                <!-- <button type="submit" class="btn btn-primary">Login</button> -->
+                            </form>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <button id="login-button" class="btn btn-primary">Login</button>
+                            <button id="logout-button" class="btn btn-secondary">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- registration form -->
+            <div class="row">
+                <div class="col-lg-3">
+                </div>
+                <div class="col-lg-9 p-3">
+                    <div class="card w-50">
+                        <div class="card-header">
+                            Registration Form
+                        </div>
+                        <div class="card-body">
+                            <form id="registration-form" class="form-inline">
+                                <div class="mb-3">
+                                    <label for="reg-username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="reg-username"
+                                        placeholder="Enter username">
+                                </div>
+                                <!-- suername first/last -->
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label for="first-name" class="form-label">First Name</label>
+                                            <input type="text" class="form-control mb-2" id="first-name"
+                                                placeholder="Enter first name">
+                                        </div>
+                                        <div class="col">
+                                            <label for="last-name" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="last-name"
+                                                placeholder="Enter last name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="reg-email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="reg-email" placeholder="Enter email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="reg-password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="reg-password"
+                                        placeholder="Enter password">
+                                </div>
+                                <div>
+                                    <label for="reg-confirm-password" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="reg-confirm-password"
+                                        placeholder="Confirm password">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <button id="register-button" class="btn btn-primary">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-8 col-md-7 col-sm-6">
                     <h1>Default</h1>

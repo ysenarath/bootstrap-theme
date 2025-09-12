@@ -1,70 +1,129 @@
-/* ============================================================================
-   custom.scss — Bootstrap → shadcn look
-   Structure:
-   1) Variables (Sass, HEX only)   ← Bootstrap reads these during build
-   2) Import Bootstrap
-   3) Overrides (CSS variables + component polish, accent variants)
-============================================================================ */
+// Custom.scss
+// Option B: Include parts of Bootstrap
 
-/* 1) VARIABLES (HEX ONLY) -------------------------------------------------- */
-/* Colors that Bootstrap will use at build time (no CSS vars here) */
-$primary: #111111; // neutral emphasis (light)
-$secondary: #737373; // gray-500
-$success: #10b981; // emerald-500
-$info: #3b82f6; // blue-500
-$warning: #f59e0b; // amber-500
-$danger: #ef4444; // red-500
-$light: #fafafa; // gray-50
-$dark: #0a0a0a; // gray-950
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../node_modules/bootstrap/scss/functions";
 
-$theme-colors: (
-    "primary": $primary,
-    "secondary": $secondary,
-    "success": $success,
-    "info": $info,
-    "warning": $warning,
-    "danger": $danger,
-    "light": $light,
-    "dark": $dark,
-);
+// 2. Include any default variable overrides here
+@import "_variables";
 
-/* Type & rhythm */
-$font-family-sans-serif:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Inter,
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",;
-$font-weight-base: 500;
-$headings-font-weight: 700;
-$line-height-base: 1.5;
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
 
-/* Corners & borders */
-$enable-rounded: true;
-$border-width: 1px;
-$border-radius: 0.75rem; // shadcn-ish rounded
-$border-radius-sm: 0.5rem;
-$border-radius-lg: 1rem;
+// 4. Include any default map overrides here
 
-/* Shadows */
-$box-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-$box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-$box-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
+// 5. Include remainder of required parts
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
 
-/* Body & tables */
-$body-bg: #ffffff;
-$body-color: #111111;
-$table-border-color: #e5e5e5;
+// 6. Include any other optional stylesheet partials as desired; list below is not inclusive of all available stylesheets
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+// @import "../node_modules/bootstrap/scss/type";
+// @import "../node_modules/bootstrap/scss/images";
+// @import "../node_modules/bootstrap/scss/containers";
+// @import "../node_modules/bootstrap/scss/grid";
+// @import "../node_modules/bootstrap/scss/helpers";
+// ...
 
-/* Focus */
-$focus-ring-width: 0.25rem;
-$focus-ring-opacity: 1;
-$focus-ring-color: rgba(59, 130, 246, 0.35);
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/tables";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/dropdown";
+@import "../node_modules/bootstrap/scss/button-group";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/navbar"; // Requires nav
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/breadcrumb";
+@import "../node_modules/bootstrap/scss/accordion";
+@import "../node_modules/bootstrap/scss/pagination";
+@import "../node_modules/bootstrap/scss/badge";
+@import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/progress";
+@import "../node_modules/bootstrap/scss/list-group";
+@import "../node_modules/bootstrap/scss/close";
+@import "../node_modules/bootstrap/scss/toasts";
+@import "../node_modules/bootstrap/scss/modal"; // Requires transitions
+@import "../node_modules/bootstrap/scss/tooltip";
+@import "../node_modules/bootstrap/scss/popover";
+@import "../node_modules/bootstrap/scss/carousel";
+@import "../node_modules/bootstrap/scss/spinners";
+@import "../node_modules/bootstrap/scss/offcanvas"; // Requires transitions
+@import "../node_modules/bootstrap/scss/placeholders";
 
-/* 2) IMPORT BOOTSTRAP ------------------------------------------------------ */
-@import "../node_modules/bootstrap/scss/bootstrap";
+// Helpers
+// @import "bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/helpers";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+// 8. Add additional custom code here
+
+:root {
+    --bs-font-sans-serif:
+        system-ui, sans-serif, Roboto, "Segoe UI", -apple-system,
+        "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial,
+        "Apple Color Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-font-monospace:
+        SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+        "Courier New", monospace;
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+}
+
+.form-control {
+    // no rounded corners
+    border-radius: 0.25rem;
+}
+
+body {
+    --bs-body-bg: #ffffff;
+}
+
+.card {
+    --bs-card-bg: #ffffff;
+    --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0);
+    --tw-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--tw-shadow);
+}
+
+.card-header {
+    border-bottom: 0;
+}
+
+.card-footer {
+    border-top: 0;
+}
+
+@include color-mode(dark) {
+    body {
+        --bs-body-bg: oklch(14.5% 0 0);
+        --bs-body-color: oklch(92.2% 0 0);
+    }
+
+    .card {
+        --bs-card-bg: #171717;
+    }
+
+    .form-control {
+        background-color: #ffffff0b;
+        border-color: #333;
+        color: #eee;
+
+        &:focus {
+            background-color: #1c1c1c;
+            border-color: #555;
+            color: #eee;
+            box-shadow: 0 0 0 0.25rem rgba(100, 100, 100, 0.25);
+        }
+    }
+}
