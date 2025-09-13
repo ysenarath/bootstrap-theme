@@ -91,8 +91,7 @@ body {
 .card {
     --bs-card-bg: #ffffff;
     --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0);
-    --tw-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-    box-shadow: var(--tw-shadow);
+    --tw-shadow: none;
 }
 
 .card-header {
@@ -105,24 +104,25 @@ body {
 
 @include color-mode(dark) {
     body {
-        --bs-body-bg: oklch(14.5% 0 0);
-        --bs-body-color: oklch(92.2% 0 0);
+        --bs-body-bg: #000000; // shadcn dark background
+        --bs-body-color: #d4d4d8; // shadcn muted foreground
     }
 
     .card {
-        --bs-card-bg: #171717;
+        --bs-card-bg: #18181b; // shadcn card background
     }
 
     .form-control {
-        background-color: #ffffff0b;
-        border-color: #333;
-        color: #eee;
+        background-color: #18181b; // shadcn input background
+        border-color: #27272a; // shadcn input border
+        color: #d4d4d8; // shadcn input text
 
         &:focus {
-            background-color: #1c1c1c;
-            border-color: #555;
-            color: #eee;
-            box-shadow: 0 0 0 0.25rem rgba(100, 100, 100, 0.25);
+            background-color: #27272a; // shadcn input focus background
+            border-color: #3f3f46; // shadcn input focus border
+            color: #d4d4d8; // shadcn input focus text
+            box-shadow: 0 0 0 0.25rem
+                rgba(63, 63, 70, 0.25); // shadcn focus ring
         }
     }
 }
