@@ -9,6 +9,14 @@ $danger: #dc3545;
 $light: #f8f9fa;
 $dark: #343a40;
 
+// dark palette
+$primary-dark: #ffffff;
+$secondary-dark: #b7b7b7;
+$success-dark: #28a745;
+$info-dark: #17a2b8;
+$warning-dark: #ffc107;
+$danger-dark: #dc3545;
+
 $theme-colors: (
     "primary": $primary,
     "secondary": $secondary,
@@ -16,6 +24,17 @@ $theme-colors: (
     "info": $info,
     "warning": $warning,
     "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+);
+
+$theme-colors-dark: (
+    "primary": $primary-dark,
+    "secondary": $secondary-dark,
+    "success": $success-dark,
+    "info": $info-dark,
+    "warning": $warning-dark,
+    "danger": $danger-dark,
     "light": $light,
     "dark": $dark,
 );
@@ -29,9 +48,9 @@ $border-radius: 0.5rem;
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
 
 /* Body & tables */
-$body-bg: #e5e5e5;
-$body-bg-dark: #000000;
+$body-bg: #ffffff;
 $body-color: #111111;
+$body-bg-dark: #000000;
 $table-border-color: #e5e5e5;
 
 /* Focus */
